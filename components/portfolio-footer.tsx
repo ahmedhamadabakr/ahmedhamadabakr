@@ -8,7 +8,7 @@ export function PortfolioFooter() {
           
           {/* حقوق الملكية */}
           <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} Ahmed Hamada Ragab. All rights reserved.
+            © {new Date().getFullYear()} Ahmed Hamada Bakr. All rights reserved.
           </p>
 
           {/* Made with */}

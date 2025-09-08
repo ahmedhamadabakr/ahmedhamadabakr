@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, Linkedin, Send, MapPin, Loader2, CheckCircle } from "lucide-react"
+import { Mail, Phone, Linkedin, Send, Loader2, CheckCircle, Github, Twitter, Facebook} from "lucide-react"
 import { toast } from "sonner"
 
 export function ContactSection() {
@@ -38,7 +38,7 @@ export function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!validateForm()) return
-  
+
     setIsSubmitting(true)
     try {
       const res = await fetch("/api/contact", {
@@ -46,7 +46,7 @@ export function ContactSection() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       })
-  
+
       if (res.ok) {
         toast.success("Message sent successfully!")
         setFormData({ name: "", email: "", subject: "", message: "" })
@@ -61,7 +61,7 @@ export function ContactSection() {
       setIsSubmitting(false)
     }
   }
-  
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
@@ -70,8 +70,8 @@ export function ContactSection() {
     }))
   }
 
-  
-  
+
+
   const contactInfo = [
     {
       icon: <Mail className="h-5 w-5" />,
@@ -89,13 +89,25 @@ export function ContactSection() {
       icon: <Linkedin className="h-5 w-5" />,
       label: "LinkedIn",
       value: "Connect with me",
-      href: "https://linkedin.com/in/ahmed-hamada-ragab",
+      href: "https://www.linkedin.com/in/ahmedhamadabakr/",
     },
     {
-      icon: <MapPin className="h-5 w-5" />,
-      label: "Location",
-      value: "Assiut, Egypt",
-      href: "#",
+      icon: <Github className="h-5 w-5" />,
+      label: "GitHub",
+      value: "Connect with me",
+      href: "https://github.com/ahmedhamadabakr",
+    },
+    {
+      icon: <Twitter className="h-5 w-5" />,
+      label: "X",
+      value: "Connect with me",
+      href: "https://twitter.com/ahmedhamadabak3",
+    },
+    {
+      icon: <Facebook className="h-5 w-5" />,
+      label: "Facebook",
+      value: "Connect with me",
+      href: "https://www.facebook.com/A7medHbakr",
     },
   ]
 
@@ -125,39 +137,39 @@ export function ContactSection() {
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4">
-  {contactInfo.map((info, index) => (
-    <Card
-      key={index}
-      className="border-border hover:shadow-xl hover:scale-105 transition-transform duration-300"
-    >
-      <CardContent className="p-6">
-        <div className="flex items-start gap-4">
-          {/* Icon */}
-          <div className="p-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg flex-shrink-0">
-            {info.icon}
-          </div>
+                {contactInfo.map((info, index) => (
+                  <Card
+                    key={index}
+                    className="border-border hover:shadow-xl hover:scale-105 transition-transform duration-300"
+                  >
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        {/* Icon */}
+                        <div className="p-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg flex-shrink-0">
+                          {info.icon}
+                        </div>
 
-          {/* Text */}
-          <div className="min-w-0"> {/* ده مهم علشان text-ellipsis يشتغل */}
-            <p className="font-medium text-foreground">{info.label}</p>
-            {info.href !== "#" ? (
-              <a
-                href={info.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-muted-foreground hover:text-primary transition-colors duration-200 truncate break-all"
-              >
-                {info.value}
-              </a>
-            ) : (
-              <p className="text-muted-foreground truncate break-all">{info.value}</p>
-            )}
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  ))}
-</div>
+                        {/* Text */}
+                        <div className="min-w-0"> {/* ده مهم علشان text-ellipsis يشتغل */}
+                          <p className="font-medium text-foreground">{info.label}</p>
+                          {info.href !== "#" ? (
+                            <a
+                              href={info.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block text-muted-foreground hover:text-primary transition-colors duration-200 truncate break-all"
+                            >
+                              {info.value}
+                            </a>
+                          ) : (
+                            <p className="text-muted-foreground truncate break-all">{info.value}</p>
+                          )}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
 
             </div>
 

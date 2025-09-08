@@ -19,10 +19,48 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: "Ahmed Hamada Ragab - Full Stack Developer",
+  title: "Ahmed Hamada Bakr - Full Stack Developer",
   description:
     "Full Stack Developer with expertise in building dynamic web and mobile applications using React.js, Next.js, Node.js, and Flutter.",
-  generator: "v0.app",
+  generator: "ahmedhamadabakr",
+  keywords: ["Ahmed Hamada Bakr", "Full Stack Developer", "React.js", "Next.js", "Node.js", "Flutter"],
+  authors: [{ name: "Ahmed Hamada Bakr" }],
+  openGraph: {
+    title: "Ahmed Hamada Bakr - Full Stack Developer",
+    description:
+      "Full Stack Developer with expertise in building dynamic web and mobile applications using React.js, Next.js, Node.js, and Flutter.",
+    type: "website",
+    locale: "en",
+    siteName: "Ahmed Hamada Bakr - Full Stack Developer",
+    url: "https://ahmedhamadabakr.vercel.app/",
+    images: [
+      {
+        url: "https://ahmedhamadabakr.vercel.app/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Ahmed Hamada Bakr - Full Stack Developer",
+      },
+    ],
+  },
+  twitter: {
+    title: "Ahmed Hamada Bakr - Full Stack Developer",
+    description:
+      "Full Stack Developer with expertise in building dynamic web and mobile applications using React.js, Next.js, Node.js, and Flutter.",
+    card: "summary_large_image",
+    images: [
+      {
+        url: "https://ahmedhamadabakr.vercel.app/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Ahmed Hamada Bakr - Full Stack Developer",
+      },
+    ],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+    shortcut: "/favicon-32x32.png",
+  }
 }
 
 export default function RootLayout({

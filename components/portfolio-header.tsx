@@ -38,7 +38,7 @@ export function PortfolioHeader() {
         <div className="flex items-center justify-between">
           {/* Logo / Name */}
           <div className="font-montserrat font-extrabold text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hover:scale-105 transition-transform cursor-pointer">
-            Ahmed Ragab
+            Ahmed Bakr
           </div>
 
           {/* Desktop Navigation */}
