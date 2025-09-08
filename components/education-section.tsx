@@ -32,32 +32,44 @@ export function EducationSection() {
     {
       title: "Flutter & Dart - The Complete Guide",
       provider: "Udemy",
-      year: "2023",
+      year: "2024",
       description:
         "Comprehensive course covering Flutter development from basics to advanced concepts including state management and native features.",
     },
     {
       title: "React - The Complete Guide",
       provider: "Udemy",
-      year: "2023",
+      year: "2024",
       description: "In-depth React.js course covering hooks, context, routing, and modern React development patterns.",
+    },
+    {
+      title: "Next.js - The Complete Guide",
+      provider: "Udemy",
+      year: "2024",
+      description: "In-depth Next.js course covering hooks, context, routing, and modern React development patterns.",
+    },
+    {
+      title: "Node.js - The Complete Guide",
+      provider: "Udemy",
+      year: "2024",
+      description: "In-depth Node.js course covering Express.js, databases, and API development.",
     },
     {
       title: "UI/UX Design Specialization",
       provider: "Coursera",
-      year: "2023",
+      year: "2024",
       description: "Design thinking, user research, prototyping, and creating user-centered digital experiences.",
     },
     {
       title: "React JS Development",
       provider: "Mahara Tech",
-      year: "2022",
+      year: "2024",
       description: "Practical React.js development course with focus on building real-world applications.",
     },
     {
       title: "Full Stack Node.js Diploma",
-      provider: "Various Platforms",
-      year: "2023",
+      provider: "AMIT",
+      year: "2025",
       description: "Comprehensive backend development with Node.js, Express.js, databases, and API development.",
     },
   ]

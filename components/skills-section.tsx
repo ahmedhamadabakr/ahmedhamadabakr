@@ -18,22 +18,37 @@ export function SkillsSection() {
 
   const categories = ["Frontend", "Mobile", "Backend", "Tools"]
 
+  // ألوان مختلفة لكل كاتيجوري
+  const categoryColors: Record<string, string> = {
+    Frontend: "from-blue-500 to-cyan-400",
+    Mobile: "from-green-500 to-emerald-400",
+    Backend: "from-orange-500 to-yellow-400",
+    Tools: "from-purple-500 to-pink-400",
+  }
+
   return (
-    <section id="skills" className="py-20 bg-background">
+    <section id="skills" className="py-20 bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
+          {/* Title */}
           <div className="text-center mb-16">
-            <h2 className="font-montserrat font-bold text-3xl md:text-4xl text-foreground mb-4">
+            <h2 className="font-montserrat font-bold text-3xl md:text-4xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               Skills & Technologies
             </h2>
-            <div className="w-20 h-1 bg-primary mx-auto"></div>
+            <div className="w-24 h-1 bg-primary mx-auto mt-3 rounded-full"></div>
           </div>
 
+          {/* Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {categories.map((category) => (
-              <Card key={category} className="border-border hover:shadow-lg transition-shadow duration-300">
+              <Card
+                key={category}
+                className="border-border hover:shadow-xl hover:scale-105 transition-transform duration-300"
+              >
                 <CardContent className="p-6">
-                  <h3 className="font-montserrat font-semibold text-xl text-foreground mb-6 text-center">{category}</h3>
+                  <h3 className="font-montserrat font-semibold text-xl text-foreground mb-6 text-center">
+                    {category}
+                  </h3>
                   <div className="space-y-4">
                     {skills
                       .filter((skill) => skill.category === category)
@@ -43,9 +58,9 @@ export function SkillsSection() {
                             <span className="text-sm font-medium text-foreground">{skill.name}</span>
                             <span className="text-sm text-muted-foreground">{skill.level}%</span>
                           </div>
-                          <div className="w-full bg-muted rounded-full h-2">
+                          <div className="w-full bg-muted rounded-full h-2 overflow-hidden">
                             <div
-                              className="bg-gradient-to-r from-primary to-accent h-2 rounded-full transition-all duration-1000 ease-out"
+                              className={`h-2 rounded-full bg-gradient-to-r ${categoryColors[category]} animate-[grow_1.5s_ease-out]`}
                               style={{ width: `${skill.level}%` }}
                             ></div>
                           </div>

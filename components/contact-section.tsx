@@ -1,13 +1,13 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, Linkedin, Send, MapPin } from "lucide-react"
+import { Mail, Phone, Linkedin, Send, MapPin, Loader2, CheckCircle } from "lucide-react"
+import { toast } from "sonner"
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -16,20 +16,62 @@ export function ContactSection() {
     subject: "",
     message: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission here
-    console.log("Form submitted:", formData)
+  const validateForm = () => {
+    if (!formData.name.trim()) {
+      toast.error("Please enter your name")
+      return false
+    }
+    if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+      toast.error("Please enter a valid email address")
+      return false
+    }
+    if (!formData.message.trim()) {
+      toast.error("Please enter your message")
+      return false
+    }
+    return true
   }
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!validateForm()) return
+  
+    setIsSubmitting(true)
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+  
+      if (res.ok) {
+        toast.success("Message sent successfully!")
+        setFormData({ name: "", email: "", subject: "", message: "" })
+        setIsSubmitted(true)
+      } else {
+        toast.error("Failed to send message. Please try again.")
+      }
+    } catch (error) {
+      console.error(error)
+      toast.error("Server error. Please try later.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value,
     }))
   }
 
+  
+  
   const contactInfo = [
     {
       icon: <Mail className="h-5 w-5" />,
@@ -58,59 +100,78 @@ export function ContactSection() {
   ]
 
   return (
-    <section id="contact" className="py-20 bg-background">
+    <section id="contact" className="py-20 bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
+          {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="font-montserrat font-bold text-3xl md:text-4xl text-foreground mb-4">Get In Touch</h2>
-            <div className="w-20 h-1 bg-primary mx-auto mb-4"></div>
+            <h2 className="font-montserrat font-bold text-3xl md:text-4xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent mb-4">
+              Get In Touch
+            </h2>
+            <div className="w-24 h-1 bg-primary mx-auto mb-4 rounded-full"></div>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              I'm always open to discussing new opportunities, interesting projects, or just having a chat about
-              technology.
+              I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Information */}
+            {/* Contact Info Cards */}
             <div className="space-y-8">
               <div>
                 <h3 className="font-montserrat font-bold text-2xl text-foreground mb-6">Let's Connect</h3>
                 <p className="text-muted-foreground leading-relaxed mb-8">
-                  Whether you have a project in mind, want to collaborate, or just want to say hello, I'd love to hear
-                  from you. Feel free to reach out through any of the channels below.
+                  Whether you have a project in mind, want to collaborate, or just want to say hello, I'd love to hear from you.
                 </p>
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4">
-                {contactInfo.map((info, index) => (
-                  <Card key={index} className="border-border hover:shadow-lg transition-shadow duration-300">
-                    <CardContent className="p-6">
-                      <div className="flex items-center gap-4">
-                        <div className="p-3 bg-primary/10 rounded-lg text-primary">{info.icon}</div>
-                        <div>
-                          <p className="font-medium text-foreground">{info.label}</p>
-                          {info.href !== "#" ? (
-                            <a
-                              href={info.href}
-                              className="text-muted-foreground hover:text-primary transition-colors duration-200"
-                            >
-                              {info.value}
-                            </a>
-                          ) : (
-                            <p className="text-muted-foreground">{info.value}</p>
-                          )}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+  {contactInfo.map((info, index) => (
+    <Card
+      key={index}
+      className="border-border hover:shadow-xl hover:scale-105 transition-transform duration-300"
+    >
+      <CardContent className="p-6">
+        <div className="flex items-start gap-4">
+          {/* Icon */}
+          <div className="p-3 bg-gradient-to-r from-primary to-accent text-white rounded-lg flex-shrink-0">
+            {info.icon}
+          </div>
+
+          {/* Text */}
+          <div className="min-w-0"> {/* ده مهم علشان text-ellipsis يشتغل */}
+            <p className="font-medium text-foreground">{info.label}</p>
+            {info.href !== "#" ? (
+              <a
+                href={info.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-muted-foreground hover:text-primary transition-colors duration-200 truncate break-all"
+              >
+                {info.value}
+              </a>
+            ) : (
+              <p className="text-muted-foreground truncate break-all">{info.value}</p>
+            )}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  ))}
+</div>
+
             </div>
 
             {/* Contact Form */}
-            <Card className="border-border">
+            <Card className="border-border shadow-md">
               <CardContent className="p-8">
                 <h3 className="font-montserrat font-bold text-2xl text-foreground mb-6">Send Message</h3>
+
+                {isSubmitted && (
+                  <div className="mb-4 flex items-center gap-2 text-green-600">
+                    <CheckCircle className="h-5 w-5" />
+                    <span>Message sent successfully! I'll get back to you soon.</span>
+                  </div>
+                )}
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-4">
@@ -121,10 +182,12 @@ export function ContactSection() {
                       <Input
                         id="name"
                         name="name"
+                        placeholder="Your name"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="Your name"
+                        disabled={isSubmitting || isSubmitted}
                         required
+                        className="focus:ring-2 focus:ring-primary"
                       />
                     </div>
                     <div>
@@ -135,10 +198,12 @@ export function ContactSection() {
                         id="email"
                         name="email"
                         type="email"
+                        placeholder="Email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="your.email@example.com"
+                        disabled={isSubmitting || isSubmitted}
                         required
+                        className="focus:ring-2 focus:ring-primary"
                       />
                     </div>
                   </div>
@@ -150,10 +215,11 @@ export function ContactSection() {
                     <Input
                       id="subject"
                       name="subject"
+                      placeholder="Subject (optional)"
                       value={formData.subject}
                       onChange={handleChange}
-                      placeholder="What's this about?"
-                      required
+                      disabled={isSubmitting || isSubmitted}
+                      className="focus:ring-2 focus:ring-primary"
                     />
                   </div>
 
@@ -164,17 +230,32 @@ export function ContactSection() {
                     <Textarea
                       id="message"
                       name="message"
+                      placeholder="Your message..."
+                      rows={5}
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Tell me about your project or just say hello..."
-                      rows={5}
+                      disabled={isSubmitting || isSubmitted}
                       required
+                      className="focus:ring-2 focus:ring-primary"
                     />
                   </div>
 
-                  <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                    <Send className="mr-2 h-4 w-4" />
-                    Send Message
+                  <Button
+                    type="submit"
+                    className="w-full rounded-lg shadow-md hover:scale-105 transition-transform"
+                    disabled={isSubmitting || isSubmitted}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="mr-2 h-4 w-4" />
+                        Send Message
+                      </>
+                    )}
                   </Button>
                 </form>
               </CardContent>
