@@ -23,7 +23,7 @@ export function HeroSection() {
           {/* Profile Image */}
           <div className="space-y-4">
             <Image
-              src="/ahmed.jpg"
+              src="/ahmed-formal.png"
               alt="Ahmed Hamada Bakr"
               width={220}
               height={220}
