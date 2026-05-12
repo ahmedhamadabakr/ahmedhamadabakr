@@ -28,6 +28,7 @@ export function HeroSection() {
               width={220}
               height={220}
               className="rounded-full mx-auto shadow-2xl hover:scale-105 transition-transform duration-300"
+              priority
             />
 
             <h1 className="font-montserrat font-extrabold text-4xl md:text-6xl lg:text-7xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
