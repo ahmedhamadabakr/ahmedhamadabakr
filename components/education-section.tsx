@@ -1,5 +1,15 @@
+"use client"
+
+import { motion } from "framer-motion"
+
 import { Card, CardContent } from "@/components/ui/card"
-import { GraduationCap, Award } from "lucide-react"
+
+import {
+  GraduationCap,
+  Award,
+  CalendarDays,
+  Sparkles,
+} from "lucide-react"
 
 export function EducationSection() {
   const education = [
@@ -9,143 +19,226 @@ export function EducationSection() {
       period: "2023 – 2027",
       status: "In Progress",
       description:
-        "Pursuing a comprehensive degree in Information Technology with focus on software development, database systems, and modern web technologies.",
+        "Pursuing a comprehensive degree in Information Technology with focus on software engineering, databases, and modern application development.",
     },
     {
-      degree: "Computer & Graphics Department",
+      degree: "Diploma – Computer & Graphics",
       institution: "Industrial Technical Institute",
       period: "2022 – 2023",
       status: "Completed",
       description:
-        "Specialized in computer graphics, web design, and multimedia development with hands-on projects in visual design and programming.",
+        "Specialized in computer graphics, multimedia systems, web design, and visual programming projects.",
     },
     {
-      degree: "Computer Department",
+      degree: "Diploma – Computer",
       institution: "Industrial Technical Institute",
       period: "2021 – 2022",
       status: "Completed",
-      description: "Foundation in computer science fundamentals, programming basics, and computer hardware systems.",
+      description:
+        "Built a strong foundation in programming fundamentals, operating systems, and computer hardware.",
     },
   ]
 
   const certifications = [
     {
+      title: "Full Stack Node.js Diploma",
+      provider: "AMIT Learning",
+      year: "2025",
+    },
+    {
       title: "Flutter & Dart - The Complete Guide",
       provider: "Udemy",
       year: "2024",
-      description:
-        "Comprehensive course covering Flutter development from basics to advanced concepts including state management and native features.",
     },
     {
       title: "React - The Complete Guide",
       provider: "Udemy",
       year: "2024",
-      description: "In-depth React.js course covering hooks, context, routing, and modern React development patterns.",
     },
     {
       title: "Next.js - The Complete Guide",
       provider: "Udemy",
       year: "2024",
-      description: "In-depth Next.js course covering hooks, context, routing, and modern React development patterns.",
     },
     {
-      title: "Node.js - The Complete Guide",
-      provider: "Udemy",
+      title: "UI/UX Design for Mobile Applications",
+      provider: "Coursera / Google",
       year: "2024",
-      description: "In-depth Node.js course covering Express.js, databases, and API development.",
-    },
-    {
-      title: "UI/UX Design Specialization",
-      provider: "Coursera",
-      year: "2024",
-      description: "Design thinking, user research, prototyping, and creating user-centered digital experiences.",
     },
     {
       title: "React JS Development",
       provider: "Mahara Tech",
       year: "2024",
-      description: "Practical React.js development course with focus on building real-world applications.",
-    },
-    {
-      title: "Full Stack Node.js Diploma",
-      provider: "AMIT",
-      year: "2025",
-      description: "Comprehensive backend development with Node.js, Express.js, databases, and API development.",
     },
   ]
 
   return (
-    <section id="education" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="font-montserrat font-bold text-3xl md:text-4xl text-foreground mb-4">
-              Education & Certifications
-            </h2>
-            <div className="w-20 h-1 bg-primary mx-auto"></div>
-          </div>
+    <section
+      id="education"
+      className="relative overflow-hidden py-28 bg-[#050505]"
+    >
+      {/* Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(120,119,198,0.10),transparent_35%)]" />
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Education */}
-            <div>
-              <div className="flex items-center gap-3 mb-8">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <GraduationCap className="h-6 w-6 text-primary" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:70px_70px]" />
+
+      <div className="absolute right-0 bottom-0 w-[350px] h-[350px] bg-primary/10 rounded-full blur-[120px]" />
+
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-20"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl mb-6">
+              <Sparkles className="w-4 h-4 text-primary" />
+
+              <span className="text-sm text-gray-300">
+                Education & Learning
+              </span>
+            </div>
+
+            <h2 className="text-4xl md:text-6xl font-black tracking-tight text-white">
+              Academic Journey &
+              <span className="block bg-gradient-to-r from-primary via-purple-400 to-cyan-300 bg-clip-text text-transparent">
+                Certifications
+              </span>
+            </h2>
+
+            <p className="mt-6 text-lg text-gray-400 max-w-2xl mx-auto">
+              My educational background and continuous learning
+              journey in software engineering and modern technologies.
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12">
+            {/* EDUCATION */}
+            <motion.div
+              initial={{ opacity: 0, x: -35 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <div className="flex items-center gap-3 mb-10">
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                  <GraduationCap className="w-6 h-6" />
                 </div>
-                <h3 className="font-montserrat font-bold text-2xl text-foreground">Education</h3>
+
+                <h3 className="text-3xl font-bold text-white">
+                  Education
+                </h3>
               </div>
 
-              <div className="space-y-6">
+              <div className="relative pl-8 space-y-8">
+                {/* Timeline line */}
+                <div className="absolute left-[15px] top-2 bottom-2 w-px bg-gradient-to-b from-primary/60 to-transparent" />
+
                 {education.map((edu, index) => (
-                  <Card key={index} className="border-border hover:shadow-lg transition-shadow duration-300">
-                    <CardContent className="p-6">
-                      <div className="space-y-3">
-                        <div className="flex items-start justify-between">
-                          <h4 className="font-montserrat font-semibold text-lg text-foreground">{edu.degree}</h4>
+                  <div
+                    key={index}
+                    className="relative"
+                  >
+                    {/* Timeline dot */}
+                    <div className="absolute -left-8 top-8 w-4 h-4 rounded-full bg-primary shadow-[0_0_20px_rgba(255,255,255,0.5)]" />
+
+                    <Card className="border border-white/10 bg-white/[0.03] backdrop-blur-2xl rounded-3xl overflow-hidden hover:-translate-y-1 transition-all duration-300">
+                      <CardContent className="p-8">
+                        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
                           <span
-                            className={`px-3 py-1 text-xs rounded-full ${
-                              edu.status === "In Progress" ? "bg-accent/10 text-accent" : "bg-primary/10 text-primary"
+                            className={`px-4 py-1 rounded-full text-xs font-semibold ${
+                              edu.status === "In Progress"
+                                ? "bg-cyan-500/10 text-cyan-300 border border-cyan-500/20"
+                                : "bg-primary/10 text-primary border border-primary/20"
                             }`}
                           >
                             {edu.status}
                           </span>
+
+                          <div className="flex items-center gap-2 text-sm text-gray-400">
+                            <CalendarDays className="w-4 h-4" />
+                            {edu.period}
+                          </div>
                         </div>
-                        <p className="font-medium text-primary">{edu.institution}</p>
-                        <p className="text-sm text-muted-foreground">{edu.period}</p>
-                        <p className="text-muted-foreground leading-relaxed">{edu.description}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
+
+                        <h4 className="text-2xl font-bold text-white mb-2">
+                          {edu.degree}
+                        </h4>
+
+                        <p className="text-primary font-medium mb-4">
+                          {edu.institution}
+                        </p>
+
+                        <p className="text-gray-400 leading-relaxed">
+                          {edu.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
-            {/* Certifications */}
-            <div>
-              <div className="flex items-center gap-3 mb-8">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Award className="h-6 w-6 text-primary" />
+            {/* CERTIFICATIONS */}
+            <motion.div
+              initial={{ opacity: 0, x: 35 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <div className="flex items-center gap-3 mb-10">
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                  <Award className="w-6 h-6" />
                 </div>
-                <h3 className="font-montserrat font-bold text-2xl text-foreground">Certifications</h3>
+
+                <h3 className="text-3xl font-bold text-white">
+                  Certifications
+                </h3>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {certifications.map((cert, index) => (
-                  <Card key={index} className="border-border hover:shadow-lg transition-shadow duration-300">
+                  <Card
+                    key={index}
+                    className="group border border-white/10 bg-white/[0.03] backdrop-blur-2xl rounded-2xl hover:bg-white/[0.05] transition-all duration-300 overflow-hidden"
+                  >
                     <CardContent className="p-6">
-                      <div className="space-y-3">
-                        <div className="flex items-start justify-between">
-                          <h4 className="font-montserrat font-semibold text-lg text-foreground">{cert.title}</h4>
-                          <span className="text-sm text-muted-foreground">{cert.year}</span>
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <h4 className="text-lg font-semibold text-white group-hover:text-primary transition-colors">
+                            {cert.title}
+                          </h4>
+
+                          <p className="text-primary text-sm mt-1">
+                            {cert.provider}
+                          </p>
                         </div>
-                        <p className="font-medium text-primary">{cert.provider}</p>
-                        <p className="text-muted-foreground leading-relaxed">{cert.description}</p>
+
+                        <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-300 text-xs whitespace-nowrap">
+                          {cert.year}
+                        </span>
                       </div>
                     </CardContent>
                   </Card>
                 ))}
               </div>
-            </div>
+
+              {/* Extra box */}
+              <div className="mt-8 rounded-3xl border border-white/10 bg-gradient-to-br from-primary/10 to-purple-500/10 p-8 backdrop-blur-2xl">
+                <h4 className="text-2xl font-bold text-white mb-3">
+                  Continuous Learning
+                </h4>
+
+                <p className="text-gray-300 leading-relaxed">
+                  I constantly invest in improving my skills by
+                  learning modern frameworks, scalable architectures,
+                  and best practices in web & mobile development.
+                </p>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
