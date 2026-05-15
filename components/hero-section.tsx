@@ -41,18 +41,6 @@ export function HeroSection() {
           transition={{ duration: 0.8 }}
           className="max-w-5xl mx-auto text-center"
         >
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 mb-6 md:mb-8 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl"
-          >
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm text-gray-300">
-              Available for Freelance & Full-Time
-            </span>
-          </motion.div>
 
           {/* Profile */}
           <div className="relative w-40 h-40 md:w-52 md:h-52 mx-auto mb-8 md:mb-10">
